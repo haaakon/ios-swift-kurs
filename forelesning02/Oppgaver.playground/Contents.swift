@@ -8,6 +8,7 @@ minimum(a: 54, b: 392)   // 54
 
 ## Oppgave 1b: Lag samme type funksjon for maximum
 
+maximum(a:54, b: 392)    // 392
 */
 
 
@@ -17,6 +18,7 @@ minimum(a: 54, b: 392)   // 54
 sumOfAllValues(inArray: [34,10,10,10,100]) //  164
 
 */
+
 
 
 /*:
@@ -39,12 +41,14 @@ repeatCharacter(Character("W"), 5)
 
 */
 
+
 /*:
 ## Oppgave 4b
 Utvid funksjonen til å støtte default parametere. Dvs. at når times ikke oppgis, så skal den som standard settes til 1. Output her blir altså "W"
 
 repeatCharacter(Character("W"))
 */
+
 
 
 /*:
@@ -55,24 +59,27 @@ Lag en funksjon og en enum gjør at du kan definere denne metoden :
 
 setCase(text: "Interstellar", case: .Uppercase) // INTERSTELLAR
 setCase(text: "Interstellar", case: .Lowercase) // interstellar
+*/
 
+/*:
 ## Opppgave 5b utvid funksjonen til å akseptere nil som case argument, hvor den da velger uppercase
 
 setCase(text: "Interstellar", case: nil) // INTERSTELLAR
 
+*/
 
+/*:
 ## Oppgave 5c utvid funksjonen til å ha default nil som case arugment, slik at man kan, men ikke trenger å gi case
 
 setCase(text: "Interstellar") // INTERSTELLAR
+*/
 
+/*:
 ## Oppgave 5d utvid funksjonen til å kunne ta nil som text argument også, men da retunerer nil
 
 setCase(text: nil) // nil
 
 */
-
-
-
 
 
 
@@ -161,7 +168,7 @@ startRequesting(url:"http://http.cat", success: { (response) in
 Legg til en enum som sier hva slags HTTP-verb som skal brukes
 enumen skal ha GET, POST, PUT og DELETE
 
-startRequesting(url:"http:///http.cat", method: httpMethod.GET, success: { (response) in
+startRequesting(url:"http://http.cat", method: httpMethod.GET, success: { (response) in
      print(response)
 }
 */
