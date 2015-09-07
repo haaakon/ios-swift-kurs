@@ -25,7 +25,6 @@ Swift del 3
 * deinit og ARC
 * Optionals og Optional chaining
 * Type casting og Nested types
-* Error handling
 * Protocols
 * Extentions
 * Generics
@@ -66,6 +65,7 @@ Debugging, Testing, Rammeverk, Asynkronitet
   * Rammeverk
 * Tråder og asynkronitet
 * Snakke med internett
+* Error handling
 
 Persistering
 --------------
