@@ -61,6 +61,7 @@ print(hello())
 # Funksjoner med optional returverdi
 
 ```swift
+ 
 func hello() -> String? {
     return nil
 }
@@ -89,7 +90,7 @@ func greet(prefix: String, name: String) {
     print("Hello, \(prefix) \(name)!")
 }
 
-greet("Mr", "Anderson")
+greet("Mr", name: "Anderson")
 ```
 
 ---
@@ -159,19 +160,6 @@ greet(prefix: "Mr", name: "Anderson")
 
 ---
 
-# Funksjoner med navngitte parametere, alt 2
-
-```swift
-// # = samme navn internt/eksternt
-func greet(#prefix: String, #name: String) {
-    print("Hello, \(prefix) \(name)!")
-}
-
-greet(prefix: "Mr", name: "Anderson")
-```
-
----
-
 # Funksjoner med varargs (variadic)
 
 ```swift
@@ -202,7 +190,7 @@ func swapInts(var first: Int, var second: Int) {
 
 var a = 10
 var b = 5
-swapInts(a, b)
+swapInts(a, second: b)
 // men ikke her
 ```
 ---
@@ -239,7 +227,7 @@ func createFunction() -> () -> String {
     return helloWorld
 }
 
-func invokeFunction(fn: () -> String, #times: Int) {
+func invokeFunction(fn: () -> String, times: Int) {
     for var i = 0; i < times; i++ {
         print(fn())
     }
@@ -558,14 +546,6 @@ var someInternalConstant = 0            // implisitt internal
 
 ---
 
-# Definer module
-
-“A module is a single unit of code distribution—a framework or application that is built and shipped as a single entity and that can be imported by another module with Swift’s import keyword.”
-
-Excerpt From: Apple Inc. “The Swift Programming Language.” iBooks. https://itun.es/no/jEUH0.l
-
----
-
 # Nivåer
 
 Kortversjonen
@@ -579,10 +559,14 @@ Kortversjonen
 
 # Videre lesning
 
-#### side 12-29 TSPL
-#### http://goshdarnclosuresyntax.com/
+* side 12-29 TSPL
+* http://goshdarnclosuresyntax.com/
 
 
 # Oppgaver
 
-## Se [Øvingsoppgavene](oppgaver2.md)
+## Se Øvingsoppgaver på IT's learning
+
+#### Forelesningen er basert på fjorårets foiler, laget av
+#### Hans Magnus Inderberg og Mads Mobæk
+
