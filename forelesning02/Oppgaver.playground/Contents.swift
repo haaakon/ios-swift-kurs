@@ -2,7 +2,8 @@
 # Øvingsoppgaver forelesning 2
 
 
-## Oppgave 1a: Lag en funksjon, minimum, som tar to verdier, og returnerer den minste
+## Oppgave 1a: 
+Lag en funksjon, minimum, som tar to verdier, og returnerer den minste
 
 minimum(a: 54, b: 392)   // 54
 
@@ -13,7 +14,8 @@ maximum(a:54, b: 392)    // 392
 
 
 /*:
-## Oppgave 2: Lag en funksjon, sumOfAllValues, som summerer all verdiene i et array
+## Oppgave 2:
+Lag en funksjon, sumOfAllValues, som summerer all verdiene i et array
 
 sumOfAllValues(inArray: [34,10,10,10,100]) //  164
 
@@ -22,7 +24,8 @@ sumOfAllValues(inArray: [34,10,10,10,100]) //  164
 
 
 /*:
-## Oppgave 3a: Lag en funksjon, numbersBiggerThan, som tar inn et tall, og et array og returnerer alle verdiene i arrayet som var større enn tallet som ble gitt
+## Oppgave 3a: 
+Lag en funksjon, numbersBiggerThan, som tar inn et tall, og et array og returnerer alle verdiene i arrayet som var større enn tallet som ble gitt
 
 numbersBiggerThan(54, [34,39,100,493,1,5])    // [ 100, 493 ]
 
@@ -62,20 +65,23 @@ setCase(text: "Interstellar", case: .Lowercase) // interstellar
 */
 
 /*:
-## Opppgave 5b utvid funksjonen til å akseptere nil som case argument, hvor den da velger uppercase
+## Opppgave 5b
+utvid funksjonen til å akseptere nil som case argument, hvor den da velger uppercase
 
 setCase(text: "Interstellar", case: nil) // INTERSTELLAR
 
 */
 
 /*:
-## Oppgave 5c utvid funksjonen til å ha default nil som case arugment, slik at man kan, men ikke trenger å gi case
+## Oppgave 5c 
+utvid funksjonen til å ha default nil som case arugment, slik at man kan, men ikke trenger å gi case
 
 setCase(text: "Interstellar") // INTERSTELLAR
 */
 
 /*:
-## Oppgave 5d utvid funksjonen til å kunne ta nil som text argument også, men da retunerer nil
+## Oppgave 5d
+utvid funksjonen til å kunne ta nil som text argument også, men da retunerer nil
 
 setCase(text: nil) // nil
 
@@ -108,7 +114,7 @@ calculate(.Sum, 10, 10) // -> 20
 Endre funksjonen slik at den returnerer flere verdier, og alltid regner ut både produkt og sum:
 
 let result = calculate(2, 5, 5)
-println("Produkt: \(result.product), Sum: \(result.sum)")
+print("Produkt: \(result.product), Sum: \(result.sum)")
 */
 
 /*:
@@ -117,7 +123,7 @@ Lag en funksjon getCalculator, som tar imot en operator. Dersom operatoren er gy
 
 // Skal kunne regne ut produkt ved å bytte ut + med *:
 if let calcFn = getCalculator("+") {
-println(calcFn([3, 6, 9]))
+print(calcFn([3, 6, 9]))
 }
 */
 
@@ -128,9 +134,9 @@ parameter, og en closure som 2. parameter:
 
 request("http://www.vg.no", { beskrivelse in
 if beskrivelse {
-println(beskrivelse)
+print(beskrivelse)
 } else {
-println("Fant ikke noen beskrivelse")
+print("Fant ikke noen beskrivelse")
 }
 })
 
