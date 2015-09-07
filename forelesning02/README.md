@@ -2,6 +2,19 @@
 # _PG5600_ iOS programmering
 ## Forelesning 2
 
+
+---
+# Forrige gang
+
+* økosystemet rundt iOS-utvikling
+* Xcode og Playgrounds
+* Swift 
+   * Stringer
+   * Numbers
+   * loops
+   * if & switch
+   * Optionals
+---
 ---
 
 # Agenda - Swift del 2
@@ -23,7 +36,7 @@
 ```swift
 // Globale som standard
 func hello() {
-    println("Hello")
+    print("Hello")
 }
 
 hello()
@@ -40,7 +53,7 @@ func hello() -> String {
     return "Hello World"
 }
 
-println(hello())
+print(hello())
 ```
 
 ---
@@ -52,7 +65,7 @@ func hello() -> String? {
     return nil
 }
 
-println(hello())
+print(hello())
 ```
 
 ---
@@ -64,7 +77,7 @@ func error() -> (code: Int, message: String) {
     return (500, "Internal server error")
 }
 
-println(error().message)
+print(error().message)
 ```
 
 ---
@@ -73,7 +86,7 @@ println(error().message)
 
 ```swift
 func greet(prefix: String, name: String) {
-    println("Hello, \(prefix) \(name)!")
+    print("Hello, \(prefix) \(name)!")
 }
 
 greet("Mr", "Anderson")
@@ -86,9 +99,9 @@ greet("Mr", "Anderson")
 ```swift
 func greet(prefix: String?, name: String) {
     if let actualPrefix = prefix {
-         println("Hello, \(actualPrefix) \(name)!")
+         print("Hello, \(actualPrefix) \(name)!")
     } else {
-         println("Hello \(name)!")
+         print("Hello \(name)!")
     }
 }
 
@@ -108,7 +121,7 @@ Defaultparamtere til slutt:
 
 ```swift
 func greet(name: String, prefix: String = "") {
-    println("Hello, \(prefix) \(name)!")
+    print("Hello, \(prefix) \(name)!")
 }
 
 greet("Anderson")
@@ -124,7 +137,7 @@ Som regel ikke å anbefale pga. lesbarhet, men greit å kjenne til
 ```swift
 // Merk _ foran prefix:
 func greet(name: String, _ prefix: String = "") {
-    println("Hello, \(prefix) \(name)!")
+    print("Hello, \(prefix) \(name)!")
 }
 
 greet("Anderson")
@@ -137,7 +150,7 @@ greet("Anderson", "Mr")
 
 ```swift
 func greet(prefix p: String, name n: String) {
-    println("Hello, \(p) \(n)!")
+    print("Hello, \(p) \(n)!")
 }
 
 // Navn MÅ brukes når funksjonen kalles
@@ -151,7 +164,7 @@ greet(prefix: "Mr", name: "Anderson")
 ```swift
 // # = samme navn internt/eksternt
 func greet(#prefix: String, #name: String) {
-    println("Hello, \(prefix) \(name)!")
+    print("Hello, \(prefix) \(name)!")
 }
 
 greet(prefix: "Mr", name: "Anderson")
@@ -164,7 +177,7 @@ greet(prefix: "Mr", name: "Anderson")
 ```swift
 func greet(names: String...) {
     for name in names {
-        println("Hello \(name)")
+        print("Hello \(name)")
     }
 }
 
@@ -202,14 +215,14 @@ func swapInts(inout first: Int, inout second: Int) {
     let temp = first
     first = second
     second = temp
-    // endringer synlig her
 }
 
 var a = 10
 var b = 5
 // Må kalles med & foran parametere
-swapInts(&a, &b)
-// OG HER :-)
+swapInts(&a, second:&b)
+// a = 5
+// b = 10
 ```
 
 ---
@@ -228,7 +241,7 @@ func createFunction() -> () -> String {
 
 func invokeFunction(fn: () -> String, #times: Int) {
     for var i = 0; i < times; i++ {
-        println(fn())
+        print(fn())
     }
 }
 
@@ -236,7 +249,7 @@ func invokeFunction(fn: () -> String, #times: Int) {
 let fn = createFunction()
 
 // Kan kalles direkte
-println(fn())
+print(fn())
 
 // Eller sendes videre til annen funksjon
 invokeFunction(fn, times: 3)
@@ -257,19 +270,20 @@ invokeFunction(fn, times: 3)
     uttrykk
 }
 
-{ (value: Int) -> String in
-  return "\(value)""
+let greetingClosure =  { (greeting : String) -> Void in
+    print(greeting)
 }
 
+greetingClosure("Hei")
+
 ```
-
-
 
 ---
 
 # Closures - syntaks
 
 ```swift
+// På Array:
 public func sort(isOrderedBefore: (Int, Int) -> Bool) -> [Int] 
  
 var numbers = [43,2,1,90]
@@ -281,8 +295,6 @@ numbers.sort( { x, y in
         return false
     }
 })                     // 1,2,43,90
-
-
 
 ```
 
@@ -308,24 +320,10 @@ arr.sort({ x, y in y > x })  // 1,2,43,90
 let arr = [1, 2, 3, 4, 5]
 
 // -> [10, 20, 30, 40, 50]
-arr.map({$0 * 10 })
+numbers.sort{ $0 < $1 }
+// kan droppe  x, y hvis closure er siste argument)
 ```
 * Shorcuts til parameternavn $0, $1, $2, osv.
-
----
-
-# Trailing closures
-
-```swift
-let arr = [1, 2, 3, 4, 5]
-
-// closures kan settes utenfor parenteser
-arr.map(){$0 * 10}
-
-// Og parenteser er valgfritt dersom metoden
-// ikke tar inn parametere, som map:
-arr.map {$0 * 10}
-```
 
 ---
 
@@ -353,10 +351,11 @@ program = .Bomull
 ---
 
 ```swift
-struct POI {
+struct Coordinate {
     //... ?
 }
-class Server {
+
+class Person {
     //... ?
 }
 ```
@@ -380,19 +379,20 @@ I andre tilfeller: bruk klasser
 # Structs
 
 ```swift
-struct POI {
-    var lat: Double = 0
-    var long: Double = 0
-    var name: String?
+struct PointOfInterest {
+    var latitude: Double = 0
+    var longitude: Double = 0
+    var name : String
 }
 
 // har initializer som standard:
-let p = POI(lat: 59.91126, long: 10.76046, name: "Westerdals")
-println("\(p.name) @ \(p.lat),\(p.long)")
+let poi1 = PointOfInterest(latitude: 59,91126, longitude: 10.76046, name: "Westerdals")
+print("\(poi1.name)  - \(poi1.latitude),\(poi1.longitude)")
 
-var p2 = p // <-- kopi
-p2.name = "NITH"
+var poi2 = poi1 // <-- kopi
+poi2.name = "NITH"
 // p1.name er fortsatt Westerdals
+// p2.name er ?
 ```
 
 ---
@@ -486,7 +486,7 @@ class Server {
 let server = Server(ip: "192.168.0.1")
 server.boot()
 NSThread.sleepForTimeInterval(5)
-println("Up for \(server.uptime) seconds")
+print("Up for \(server.uptime) seconds")
 ```
 
 ---
@@ -497,10 +497,10 @@ println("Up for \(server.uptime) seconds")
 class Server {
     var ip: String {
         willSet(newIp) {
-            println("Kommer til å sette ip til \(newIp)")
+            print("Kommer til å sette ip til \(newIp)")
         }
         didSet {
-            println("Satte ip til \(ip)")
+            print("Satte ip til \(ip)")
         }
     }
 }
@@ -549,6 +549,7 @@ StructUtils.typeMethod()
 * Swift defaulter til fornuftig access control, derfor ikke alltid nødvendig å tenke på dette
 * Blir viktig når man lager frameworks
 * Som standard internal
+* Tips: sett metoder private som default
 
 ```swift
 class SomeInternalClass {}              // implisitt internal
@@ -577,7 +578,10 @@ Kortversjonen
 
 
 # Videre lesning
-#####  http://goshdarnclosuresyntax.com/
+
+#### side 12-29 TSPL
+#### http://goshdarnclosuresyntax.com/
+
 
 # Oppgaver
 
