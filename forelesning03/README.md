@@ -811,6 +811,10 @@ let array = balloon1 + balloon2
 * Se TSPL-boka om hovedtema i forelesningen
 
 ## Oppgaver
-* Se IT's learning 
+* Se IT's learning
+
+#### Forelesningen er basert på fjorårets foiler, laget av
+#### Hans Magnus Inderberg og Mads Mobæk
+
 
 
