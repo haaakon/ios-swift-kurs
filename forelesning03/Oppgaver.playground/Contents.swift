@@ -199,35 +199,36 @@ func createUser() {
 */
 
 
+/*:
+
+# Oppgave 13
+
+Få klassen Car til å implementere hashable
+
+class Car : Hashable {
+   let modelName : String
+}
+
+implementer funksjonalitet slik at hvis man har to car objekter og plusser de sammen så får man et dictionary hvor key er modelName
+
+car1 + car2    // ["Tesla" : car1 ... ]
+
+2b:  
+car1 + nil     // ["Tesla" : car1]
+
+
+*/
+
+
 
 /*:
 
-## Oppgave 13
+#Oppgave 14
 
-1. Få koden under til å kjøre. Lim inn en og en oppgave og løs dem ved bruk av generics.
+Lag en [AnyObject] med 5 forskjellige objekter, løp gjennom arrayet og bruk switch for å printe de forskjellige objektene hvor du skriver ut klassens navn og hvor mange av dem du har funnet til nå.
 
-HINT. På oppgave 4 kan det vœre lurt å slå opp hvordan man implementerer SequenceType- og
-GeneratorType protokollen
-
-```swift
-
-class ContainerItem: Hashable, Printable {
-let description: String
-
-init(description: String) {
-self.description = description
-}
-
-var hashValue: Int {
-get {
-return (31 &* self.description.hashValue) // skal printe ut (12 times)
-}
-}
-}
-
-func == (lhs: ContainerItem, rhs: ContainerItem) -> Bool {
-return lhs.description == rhs.description // skal printe ut (9 times)
-}
 
 */
+
+
 
