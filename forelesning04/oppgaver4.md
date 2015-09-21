@@ -45,8 +45,10 @@ Oppgave 5
 ----------------
 
 
-Lag en tredje knapp som går til DestinationViewController, men åpner en UIAlertViewController med tittel lik teksten som ble skrevet inn i tekstfeltet, og en OK-knapp som lukker alertcontrolleren.
+Lag en tredje knapp som går til DestinationViewController, men istedetfor å vise teksten, åpner en UIAlertViewController med tittel lik teksten som ble skrevet inn i tekstfeltet, og en OK-knapp som lukker alertcontrolleren.
 
 Hint: Lag en ny segue med annen identifier og sjekk segue.identifier for å vite hvem som ble brukt.
 
 ![](img/segue.png)
+
+
