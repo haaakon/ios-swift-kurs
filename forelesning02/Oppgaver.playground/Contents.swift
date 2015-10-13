@@ -87,8 +87,6 @@ setCase(text: nil) // nil
 
 */
 
-
-
 /*:
 ## Oppgave 6a
 Lag en funksjon som kan ta inn et variabelt antall parametere, og sum regner ut produktet av disse:
