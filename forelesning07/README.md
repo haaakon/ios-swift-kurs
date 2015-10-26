@@ -739,3 +739,6 @@ if let userName = json[0]["user"]["name"].string {
 
 ## Se Its'Learning
 
+
+#### Forelesningen er basert på fjorårets foiler, laget av
+#### Hans Magnus Inderberg og Mads Mobæk
