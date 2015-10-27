@@ -54,14 +54,14 @@ Her er en metode jeg ofte bruker for å teste at jeg parser JSON riktig. Den tar
 
 
 ```swift
- class func jsonDictionaryFromFile(filename: String) -> [String, AnyObject] {
+ class func jsonDictionaryFromFile(filename: String) -> [String : AnyObject] {
         let testBundle = NSBundle(forClass: AppDelegate.self)
         let path = testBundle.pathForResource(filename, ofType: "json")
         XCTAssertNotNil(path, "wrong filename")
         let data = NSData(contentsOfFile: path!)
         XCTAssertNotNil(data, "wrong filename")
         do {
-            if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? [String, AnyObject] {
+            if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? [String : AnyObject] {
                 return jsonDictionary
             }
             
