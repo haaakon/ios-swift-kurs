@@ -22,7 +22,9 @@ Oppgave 3
 
 Implementer en enkel applikasjon som åpner et bilde og legger på et filter
 
-Oppgave 3
+Oppgave 4
 ----------------
 
-Implementer en videoopptaker- og avspiller
+- Implementer en videoopptaker- og avspiller
+- Spill av et klipp fra nett, ( google sample video )
+
