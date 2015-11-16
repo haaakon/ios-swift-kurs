@@ -1,4 +1,4 @@
-Øvingsoppgaver forelesning 9
+Øvingsoppgaver forelesning 10
 ================
 
 Oppgave 1
