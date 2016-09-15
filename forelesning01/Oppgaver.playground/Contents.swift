@@ -107,7 +107,7 @@ Lag et nytt iOS prosjekt i Xcode av typen “Single View Application”.
 
 //:Du har fått disse to objektene med data fra et API, dessverre har det kommet med litt andre verdier i array,
 //:men index og antall launches er fortsatt riktig - Falcon 9 har 19 launches, Atlas V har 55, osv.
-let rockets : [AnyObject?] = ["Falcon 9", nil, -999, nil, "Atlas V", nil, "Space Shuttle", nil, "My Water bottle-rocket"]
+let rockets : [Any?] = ["Falcon 9", nil, -999, nil, "Atlas V", nil, "Space Shuttle", nil, "My Water bottle-rocket"]
 let numberOfLaunches = [19, 55, 135, 1]
 
 //:    Gå gjennom rockets og skriv rakettenes navn og antall launches på formatet
@@ -137,7 +137,7 @@ Lag deretter en fil kalt “swiftsort.swift” med følgede innhold:
 
 #!/usr/bin/env xcrun swift
 import Cocoa
-println(“Hello world”)
+print(“Hello world”)
 
 For å gjøre denne kjørbar fra terminalen, skriver du
 
