@@ -533,16 +533,33 @@ XCPSetExecutionShouldContinueIndefinitely()
 
 ---
 
+## https://github.com/Alamofire/Alamofire
+
+
+---
+
 # Alamofire og REST
 
 ```swift
-Alamofire.request(.GET, "http://mobile-course.herokuapp.com/message")
-         .response { (request, response, data, error) in
-                     print(request)
-                     print(response)
-                     print(error)
-                   }
+
+Alamofire.request(.GET,  "http://jsonplaceholder.typicode.com/posts")
+            .responseJSON { ( response) -> Void in
+
+                if let responseJSONArray = response.result.value as? [[String : AnyObject]] {
+
+                    for post in responseJSONArray {
+                        print(post)
+                    }
+                }
+
+                if let responseError = response.result.error {
+                    print(response.result.error)
+                }
+        }
+        
 ```
+
+---
 
 ## https://github.com/Alamofire/Alamofire
 

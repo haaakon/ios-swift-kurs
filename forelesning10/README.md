@@ -49,7 +49,7 @@ Mer Om:
 
 ---
 
-!(./img/update_loop_2x.png)
+![](./img/update_loop_2x.png)
 
 ---
 
