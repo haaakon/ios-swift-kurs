@@ -10,8 +10,9 @@
 ##### github.com/haaakon
 
 
-##### www.shortcut.no 
-    
+##### Beining & Bogen
+##### beiningbogen.no
+
 ---
 
 # Agenda
@@ -26,25 +27,27 @@
 # Praktisk informasjon
 
 * Ikke lenger Objective-C, men Swift
-* The Swift Programming Language (Swift 2 prerelease)  - Apple
+* The Swift Programming Language x
 * iOS-programming with Swift - O'Reilly
-* en Deleksamen og en innlevering 
+* En hovedeksamen
+
 
 ---
 
 # iOS økosystem
 
 * Portal: _developer.apple.com_
-* Enheter: _iPhone, iPad, Apple Watch, (Apple TV?)_
+* Enheter: _iPhone, iPad, Apple Watch, Apple TV_
 * Plattform: _iOS / Cocoa Touch / Objective-C/Swift_
 * Utviklingsverktøy: _XCode, Instruments, Bots_
 * Distribusjon: _App Store, iTunes Connect_
 
 ---
 
-# XCode 7 (Beta 6) 
+# XCode 8
 
-* last ned på https://developer.apple.com/xcode/downloads/
+* XCode 8 : https://developer.apple.com/support/xcode/
+* XCode 7.3 (gammel versjon): http://adcdownload.apple.com/Developer_Tools/Xcode_7.3.1/Xcode_7.3.1.dmg
 
 
 ## DEMO
@@ -81,8 +84,8 @@ F#, Java, Lisp, JavaScript, Diverse funksjonelle språk.
 
 ```swift
 			   print("Hello world")
-			   
-``` 
+
+```
 
 ---
 
@@ -131,13 +134,13 @@ For eksempel hvis du setter en Double til å vœre Float.
 let subject = "iOS programmering"
 
 if(subject == "iOS programmering") {
-    println("😘 " + subject)
+    print("😘 " + subject)
 }
 ```
 Og ja, du kan bruke emojis 😛
 
 ```swift
-let 🚀 = "falcon 9 rocket" 
+let 🚀 = "falcon 9 rocket"
 ```
 
 ---
@@ -145,6 +148,7 @@ let 🚀 = "falcon 9 rocket"
 # String interpolation
 
 ```swift
+
 let n1 = 10, n2 = 8
 let mathString = "\(n1) ganger \(n2) er \(n1 * n2)"
 //10 ganger 8 er 80
@@ -205,11 +209,11 @@ print(error.message) // Login unavailable
 var possibleWelcomeMessage: String? = "Halloo"
 
 if possibleWelcomeMessage == nil {
-    println("Det er ingen streng her!")
+    print("Det er ingen streng her!")
 } else {
     // unwrapping med !
     let welcomeMessage = possibleWelcomeMessage!
-    println(welcomeMessage)
+    print(welcomeMessage)
 }
 ```
 
@@ -221,7 +225,7 @@ Da får man kompile error
 ```swift
 <br />
 if let welcomeMessage = possibleWelcomeMessage {
-        println(welcomeMessage)
+        print(welcomeMessage)
 } else {
    // Håndter at verdien var nil
 }
@@ -450,26 +454,23 @@ switch sender {
 ---
 
 # For å kjøre Swift i terminalen
-## må man sette nyeste xcode beta med
+## må man sette riktig xcode-versjon med
 ## _`xcode-select`_
 
-_xcode-select -s /Applications/Xcode-beta.app/Contents/Developer_
+_xcode-select -s /Applications/Xcode-7-3.app/Contents/Developer_
 
 
 ---
 
 ## Videre lesning
-* 3-11 i TSPL (Swift 2 prerelase)
-* http://bit.do/the-basics - Apple-dokumentasjon om basics i Swift
-* http://bit.do/control-flow - Apple-dokumentasjon om control flow
+* 3-11 i TSPL
 
 ---
 
 # Oppgaver
 
-##       http://bit.do/forelesning1
+##       https://github.com/haaakon/ios-swift-kurs
 
 
 #### Forelesningen er basert på fjorårets foiler, laget av
 #### Hans Magnus Inderberg og Mads Mobæk
-
