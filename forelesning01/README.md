@@ -374,11 +374,11 @@ _Det finnes tre typer løkker_
 
 ```swift
 if age <= 10 {
-    println("Barn")
+    print("Barn")
 } else if age >= 80 {
-    println("Gammel")
+    print("Gammel")
 } else {
-    println("I mellom en plass?;)")
+    print("I mellom en plass?;)")
 }
 ```
 
