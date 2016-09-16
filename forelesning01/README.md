@@ -448,8 +448,7 @@ switch sender {
 
 # Swift online editor
 
-##### http://swiftstub.com/
-
+https://swiftlang.ng.bluemix.net/#/repl
 
 ---
 
@@ -457,7 +456,7 @@ switch sender {
 ## må man sette riktig xcode-versjon med
 ## _`xcode-select`_
 
-_xcode-select -s /Applications/Xcode-7-3.app/Contents/Developer_
+_xcode-select -s /Applications/Xcode.app/Contents/Developer_
 
 
 ---
