@@ -349,11 +349,10 @@ people.insert("Carl Sagan")
 
 # Løkker
 
-_Det finnes fire typer løkker_
+_Det finnes tre typer løkker_
 
 * _while_
 * _do-while_
-* _for_
 * _for-in_
 
 ^ Ikke noe nytt her altså, og de gjøres på vanlig måte
@@ -365,6 +364,7 @@ _Det finnes fire typer løkker_
 
 * _if_
 * _switch_
+* _guard_
 
 ---
 
