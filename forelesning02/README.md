@@ -8,7 +8,7 @@
 
 * økosystemet rundt iOS-utvikling
 * Xcode og Playgrounds
-* Swift 
+* Swift
    * Stringer
    * Numbers
    * loops
@@ -108,13 +108,12 @@ func greet(prefix: String?, name: String) {
     }
 }
 
-greet("Mr", "Anderson")
-greet(nil, "Anderson")
+greet(prefix: "Mr", "Anderson")
+greet(prefix: nil, "Anderson")
 
 ```
 
 ---
-
 
 
 
@@ -127,8 +126,8 @@ func greet(name: String, prefix: String = "") {
     print("Hello, \(prefix) \(name)!")
 }
 
-greet("Anderson")
-greet("Anderson", prefix: "Mr")
+greet(name: "Anderson")
+greet(name: "Anderson", prefix: "Mr")
 ```
 
 ---
@@ -143,13 +142,13 @@ func greet(name: String, _ prefix: String = "") {
     print("Hello, \(prefix) \(name)!")
 }
 
-greet("Anderson")
-greet("Anderson", "Mr")
+greet(name: "Anderson")
+greet(name: "Anderson", "Mr")
 ```
 
 ---
 
-# Funksjoner med navngitte parametere
+# rename parametere
 
 ```swift
 func greet(prefix p: String, name n: String) {
@@ -171,7 +170,8 @@ func greet(names: String...) {
     }
 }
 
-greet("Agent Smith", "Mr. Anderson")
+greet(names: "Agent Smith", "Mr. Anderson")
+
 ```
 
 * Maks ett
@@ -179,29 +179,11 @@ greet("Agent Smith", "Mr. Anderson")
 
 ---
 
-# Funksjoner som endrer på parameterne, internt
-
-```swift
-// Må ha var foran parameternavn
-func swapInts(var first: Int, var second: Int) {
-    let temp = first
-    first = second
-    second = temp
-    // endringer synlig her
-}
-
-var a = 10
-var b = 5
-swapInts(a, second: b)
-// men ikke her
-```
----
 
 # Funksjoner som endrer på parameterne, eksternt
 
 ```swift
-// Må bruke inout foran parameternavn
-func swapInts(inout first: Int, inout second: Int) {
+func swapInts(first: inout Int, second: inout Int) {
     let temp = first
     first = second
     second = temp
@@ -210,7 +192,7 @@ func swapInts(inout first: Int, inout second: Int) {
 var a = 10
 var b = 5
 // Må kalles med & foran parametere
-swapInts(&a, second:&b)
+swapInts(first: &a, second:&b))
 // a = 5
 // b = 10
 ```
@@ -230,7 +212,7 @@ func createFunction() -> () -> String {
 }
 
 func invokeFunction(fn: () -> String, times: Int) {
-    for var i = 0; i < times; i++ {
+    for _ in 0 ..< times {
         print(fn())
     }
 }
@@ -242,7 +224,8 @@ let fn = createFunction()
 print(fn())
 
 // Eller sendes videre til annen funksjon
-invokeFunction(fn, times: 3)
+invokeFunction(fn: fn, times: 3)
+
 ```
 
 ---
@@ -274,13 +257,13 @@ greetingClosure("Hei")
 
 ```swift
 // På Array:
-public func sort(isOrderedBefore: (Int, Int) -> Bool) -> [Int] 
- 
+public func sorted(by: (Int, Int) -> Bool) -> [Int]
+
 var numbers = [43,2,1,90]
 
-numbers.sort( { x, y in
+numbers.sorted(by { x, y in
     if y > x {
-        return true 
+        return true
     } else {
         return false
     }
@@ -295,7 +278,7 @@ numbers.sort( { x, y in
 ```swift
 let arr = [43,2,1,90]
 
-arr.sort({ x, y in y > x })  // 1,2,43,90
+arr.sorted(by: { x, y in y > x })  // 1,2,43,90
 
 
 ```
@@ -307,7 +290,7 @@ arr.sort({ x, y in y > x })  // 1,2,43,90
 # Closures - syntaks
 
 ```swift
-let arr = [1, 2, 3, 4, 5]
+let numbers = [1, 2, 3, 4, 5]
 
 // -> [10, 20, 30, 40, 50]
 numbers.sort{ $0 < $1 }
@@ -322,15 +305,16 @@ numbers.sort{ $0 < $1 }
 ---
 
 ```swift
+
 enum Vaskeprogram {
-    case IkkeValgt
-    case Bomull
-    case Ull
-    case Syntetisk
+    case ikkeValgt
+    case bomull
+    case ull
+    case syntetisk
 }
 
-var program = Vaskeprogram.IkkeValgt
-program = .Bomull
+var program = Vaskeprogram.ikkeValgt
+program = .bomull
 
 ```
 
@@ -402,7 +386,7 @@ poi2.name = "NITH"
 class Server {
     // Stored properties - ikke instansvariabler
     var ip: String
-    var startTime : NSDate?
+    var startTime : Date?
     var running = false
 
     // Konstruktør
@@ -422,7 +406,7 @@ let server = Server(ip: "192.168.0.1")
 class Server {
     // ...
     func boot() {
-        startTime = NSDate()
+        startTime = Date()
     }
 }
 
@@ -462,7 +446,7 @@ class Server {
     var uptime : Int {
         get {
             if let start = startTime {
-                return Int(NSDate().timeIntervalSinceDate(start))
+                return Int(Date().timeIntervalSinceDate(start))
             } else {
                 return 0
             }
@@ -475,7 +459,7 @@ class Server {
 
 let server = Server(ip: "192.168.0.1")
 server.boot()
-NSThread.sleepForTimeInterval(5)
+Thread.sleepForTimeInterval(5)
 print("Up for \(server.uptime) seconds")
 ```
 
@@ -571,4 +555,3 @@ Kortversjonen
 
 #### Forelesningen er basert på fjorårets foiler, laget av
 #### Hans Magnus Inderberg og Mads Mobæk
-
