@@ -14,8 +14,6 @@
    * loops
    * if & switch
    * Optionals
----
-
 
 ---
 
@@ -92,7 +90,7 @@ func greet(prefix: String, name: String) {
     print("Hello, \(prefix) \(name)!")
 }
 
-greet("Mr", name: "Anderson")
+greet(prefix: "Mr", name: "Anderson")
 ```
 
 ---
