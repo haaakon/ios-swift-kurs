@@ -536,9 +536,11 @@ var someInternalConstant = 0            // implisitt internal
 
 Kortversjonen
 
-* `private` - skjules utad
+* `private` - skjules utad unntatt i deklarasjonen
+* `fileprivate` - skjules utenfor filen
 * `internal` - tilgjengelig i samme modul
 * `public` - tilgjengelig også for andre moduler
+* `open` - tilgjengelig også for andre moduler
 
 ---
 
