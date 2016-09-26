@@ -4,26 +4,6 @@
 
 ---
 
-# Hva skjedde på onsdag?
-
----
-
-# tvOS
-
-![tvOS](tvOS.png)
-
----
-#iPad Pro
-
-![](iPadPro.png)
-
----
-
-#iPhone 6S - 3D touch
-![](3dTouch.png)
-
----
-
 # Sist gang
 
 * Funksjoner
@@ -43,7 +23,7 @@
 * Optionals og Optional chaining
 * Guard
 * Type casting og Nested types
-* Protocols 
+* Protocols
 * Extentions
 * Generics
 
@@ -132,14 +112,14 @@ class EnKlassemedSubscripts {
 ```swift
 
 class LivingThing {
-    let birth: NSDate
+    let birth: Date
 
-    init(birth: NSDate) {
+    init(birth: Date) {
         self.birth = birth
     }
 }
 
-var aThing = LivingThing(birth: NSDate())
+var aThing = LivingThing(birth: Date())
 
 ```
 
@@ -150,11 +130,11 @@ var aThing = LivingThing(birth: NSDate())
 ```swift
 
 class LivingThing {
-    let birth: NSDate
-    var death: NSDate?
+    let birth: Date
+    var death: Date?
     var isAlive: Bool = true
 
-    init(birth: NSDate) {
+    init(birth: Date) {
         self.birth = birth
     }
 }
@@ -188,21 +168,21 @@ __Convenience__
 
 ```swift
 class LivingThing {
-    let birth: NSDate
-    var death: NSDate?
+    let birth: Date
+    var death: Date?
     var isAlive: Bool = true
 
-    init(birth: NSDate) {
+    init(birth: Date) {
         self.birth = birth
     }
 
     convenience init() {
-      self.init(birth: NSDate())
+      self.init(birth: Date())
       self.isAlive = false // må vœre etter self.init
     }
 }
 
-var livingThing = LivingThing(birth: NSDate())
+var livingThing = LivingThing(birth: Date())
 
 // convenience
 var livingThing2 = LivingThing()
@@ -236,15 +216,15 @@ og ....... alt annet fra en annen klasse
 
 class LivingThing {
 
-    let birth: NSDate
-    var death: NSDate?
+    let birth: Date
+    var death: Date?
 
     // Kan ikke overskrives
     final var isAlive: Bool {
         return self.death == nil
     }
 
-    init(birth: NSDate) {
+    init(birth: Date) {
         self.birth = birth
     }
 
@@ -307,7 +287,7 @@ class Student : Person {
     }
 }
 
-var gunnar = Student(firstName: "Lars", lastName: "Gunnar", birth: NSDate())
+var gunnar = Student(firstName: "Lars", lastName: "Gunnar", birth: Date())
 gunnar.firstName // Lars
 gunnar.description // Student på Westerdals med navn Lars Gunnar
 
@@ -501,15 +481,14 @@ for item in living {
 ---
 
 - AnyObject kan representere en instans hvilke som helst klassetype
-- Any kan representere en instans av hvilke som helst type, foruten funksjontyper
+- Any kan representere en instans av hvilke som helst type, inkludert funksjontyper
 - Bør bare brukes når man faktisk trenger det, vœr eksplisitt
 
 ---
 
 ```swift
 
-// Cocoa apis og array vil alltid innholde AnyObject,
-// da Objective-C ikke har eksplisitte typede arrays
+// Cocoa-APIer og array vil innholde Any
 
 let someObjects: [AnyObject] = [
     Person(birth: NSDate()),
@@ -602,12 +581,12 @@ func generateRocketSchematics(rocketDictionary : [String : String]?) {
         print("no rocket name")
         return
     }
-    
+
     guard let fuelName = actualDictionary["fuelName"] else {
         print("no fuel name")
         return
     }
-    
+
     Rocket(rocketName, fuelName: fuelName)
 }
 
@@ -815,6 +794,3 @@ let array = balloon1 + balloon2
 
 #### Forelesningen er basert på fjorårets foiler, laget av
 #### Hans Magnus Inderberg og Mads Mobæk
-
-
-

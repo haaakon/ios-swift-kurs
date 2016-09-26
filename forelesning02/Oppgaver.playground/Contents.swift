@@ -2,7 +2,7 @@
 # Øvingsoppgaver forelesning 2
 
 
-## Oppgave 1a: 
+## Oppgave 1a:
 Lag en funksjon, minimum, som tar to verdier, og returnerer den minste
 
 minimum(a: 54, b: 392)   // 54
@@ -24,7 +24,7 @@ sumOfAllValues(inArray: [34,10,10,10,100]) //  164
 
 
 /*:
-## Oppgave 3a: 
+## Oppgave 3a:
 Lag en funksjon, numbersBiggerThan, som tar inn et tall, og et array og returnerer alle verdiene i arrayet som var større enn tallet som ble gitt
 
 numbersBiggerThan(54, [34,39,100,493,1,5])    // [ 100, 493 ]
@@ -73,7 +73,7 @@ setCase(text: "Interstellar", case: nil) // INTERSTELLAR
 */
 
 /*:
-## Oppgave 5c 
+## Oppgave 5c
 utvid funksjonen til å ha default nil som case arugment, slik at man kan, men ikke trenger å gi case
 
 setCase(text: "Interstellar") // INTERSTELLAR
@@ -215,9 +215,3 @@ Logg:
 Someone was here...
 I was here!
 */
-
-
-
-
-
-

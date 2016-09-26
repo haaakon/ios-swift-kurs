@@ -51,8 +51,8 @@ var minute: Int
 var second: Int
 
 var running: Bool = false
-var startedAt: NSDate?
-var stoppedAt: NSDate?
+var startedAt: Date?
+var stoppedAt: Date?
 }
 
 */
@@ -80,11 +80,11 @@ var stoppedAt: NSDate?
 3. Lag en klasse Frog som følger protokollen LivingBeing
 4. Skriv klassen slik at dette er mulig:
 
-var frog = Frog(birthDate: NSDate())
+var frog = Frog(birthDate: Date())
 
 frog.isAlive     // true
 
-frog.deathDate = NSDate()
+frog.deathDate = Date()
 
 frog.isAlive     // false
 
@@ -146,11 +146,11 @@ println("Kunne ikke hente fullstendig gatenavn")
 
 class Address {
     var street: String?
-    
+
     func printStreet() {
         print("Hello")
     }
-    
+
     func buildFullStreetName() -> String? {
         return street
     }
@@ -231,7 +231,7 @@ extension String {
         }
         return nil
     }
-    
+
     var length : Int  {
         return self.characters.count
     }
@@ -375,7 +375,7 @@ implementer funksjonalitet slik at hvis man har to car objekter og plusser de sa
 
 car1 + car2    // ["Tesla" : car1 ... ]
 
-2b:  
+2b:
 car1 + nil     // ["Tesla" : car1]
 
 
@@ -506,7 +506,3 @@ let anyObjectArray : [AnyObject] = ["Omg", 234, 342.3]
 printAllStrings(intArray)
 printAllStrings(stringArray)         // printer: Hello   world
 printAllStrings(anyObjectArray)      // printer: Omg
-
-
-
-
