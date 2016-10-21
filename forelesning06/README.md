@@ -4,16 +4,6 @@
 
 ---
 
-# Litt om eksamen
-
-- Dere er flinke i MVC, beskrivelser og forståelse, Kudos! :D 
-- Closures er vanskelig
-- Blander språk ( mange andre eksamen samtidig? )
-- Bra nivå på håndskrift
-- La oss ta en oppgave i plenum i playground
-
----
-
 # Sist gang
 
 * Delegate pattern
@@ -28,7 +18,7 @@
 # Agenda
 
 * Viewkonsepter
-* Å instansiere views 
+* Å instansiere views
 * Å lage custom views
 * Eventhåndtering
 * Gestures
@@ -199,8 +189,8 @@ class StarView: UIView {
 @IBDesignable
 class StarView: UIView {
 
-  // @IBInspectable blir tilgjengelig i IB sitt gui! 
-  @IBInspectable var bgColor:UIColor = UIColor(red: 0.078, green: 0.705, 
+  // @IBInspectable blir tilgjengelig i IB sitt gui!
+  @IBInspectable var bgColor:UIColor = UIColor(red: 0.078, green: 0.705,
       blue: 0.912, alpha: 1.000)
   //...
 
@@ -242,7 +232,7 @@ class StarView: UIView {
 class StarView: UIView {
 
   override func drawRect(frame: CGRect) { /* ... */ }
-  
+
   override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
     let touch = touches.anyObject() as UITouch
     let point = touch.locationInView(self)
@@ -269,7 +259,7 @@ class StarView: UIControl {
 
 ```swift
 // Arver fra UIControl:
-func addTarget(target: AnyObject?, action: Selector, 
+func addTarget(target: AnyObject?, action: Selector,
   forControlEvents controlEvents: UIControlEvents)
 // ... og hvis du vil trigge noe custom fra komponenten din:
 func sendActionsForControlEvents(controlEvents: UIControlEvents)
@@ -301,14 +291,14 @@ Trykke på de hvite områdene på stjerna trigger tap. Kan løses med custom hit
 ```swift
 @IBDesignable
 class StarView: UIControl {
-    
+
     var starPath = UIBezierPath()
-    
+
     override func drawRect(frame: CGRect)
     {
         //// Star Drawing     
     }
-    
+
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         return starPath.containsPoint(point)
     }
@@ -391,9 +381,9 @@ UIView.animateWithDuration(1, animations: { () -> Void in
 # Nøstede animasjoner
 
 ```swift
-// Fade ut med custom options, deretter inn igjen 
-UIView.animateWithDuration(0.2, delay: 0, options: 
-  UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveEaseIn, 
+// Fade ut med custom options, deretter inn igjen
+UIView.animateWithDuration(0.2, delay: 0, options:
+  UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveEaseIn,
 animations: { () -> Void in
     self.image.alpha = 0
 }) { (finished) -> Void in
@@ -409,7 +399,7 @@ animations: { () -> Void in
 Ved større endringer innenfor samme view:
 
 ```swift
-UIView.transitionWithView(self.view, duration: 1, options: 
+UIView.transitionWithView(self.view, duration: 1, options:
   UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
   // Legg til/fjern/skul/vis subviews
 }, completion: nil)
@@ -447,17 +437,17 @@ class CustomSegue: UIStoryboardSegue {
   override func perform() {
     let source = self.sourceViewController as UIViewController
     let destination = self.destinationViewController as UIViewController
-    
+
     // 1. Legg destination viewet inn i source viewet
     source.view.addSubview(destination.view)
-    
+
     // 2. <sett opp starttilstand for views>
-    
+
     UIView.animateWithDuration(1, animations: { () -> Void in
         // 3. <sett opp sluttilstand for views>
         }) { (finished) -> Void in
         // 4. <presenter destinationcontroller når animasjonen er ferdig>
-    } 
+    }
   }
 }
 ```
@@ -469,12 +459,12 @@ class CustomSegue: UIStoryboardSegue {
   override func perform() {
     let source = self.sourceViewController as UIViewController
     let destination = self.destinationViewController as UIViewController
-    
+
     source.view.addSubview(destination.view)
-    
+
     destination.view.alpha = 0
     destination.view.transform = CGAffineTransformMakeScale(0.05, 0.05)
-    
+
     UIView.animateWithDuration(1, animations: { () -> Void in
         destination.view.alpha = 1
         destination.view.transform = CGAffineTransformMakeScale(1, 1)
