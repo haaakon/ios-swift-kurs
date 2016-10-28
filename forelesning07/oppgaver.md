@@ -17,24 +17,24 @@ class PersonTests: XCTestCase {
         let person = Person(named: "John Doe")
         XCTAssertNotNil(person)
     }
-    
+
     func testPersonWithName() {
         let person = Person(named: "John Doe")
         XCTAssertEqual(person.name, "John Doe")
     }
-    
+
     func testPersonWithAge() {
         let person = Person(named: "John Doe")
         person.age = 28
         XCTAssertEqual(person.age, 28)
     }
-    
+
     func testUpdatePersonName() {
         var person = Person(named: "John Doe")
         person.name = "Steve Jobs"
         XCTAssertEqual(person.name, "Steve Jobs")
     }
-    
+
 }
 ```
 
@@ -49,35 +49,37 @@ Lag en assertion som feiler om man kaller en metode med feil parametre.
 Kjør prosjektet og valider at Xcode stopper applikasjonen der du spesifiserte asserten
 
 ## Oppgave 3
- 
-Her er en metode jeg ofte bruker for å teste at jeg parser JSON riktig. Den tar et filnavn inn og gir deg et dictionary av attributter tilbake. Lag en demo jsonfil med en enkelt attributt og bruk kall metoden fra en testmetode for å sjekke det. 
+
+Her er en metode jeg ofte bruker for å teste at jeg parser JSON riktig. Den tar et filnavn inn og gir deg et dictionary av attributter tilbake. Lag en demo jsonfil med en enkelt attributt og bruk kall metoden fra en testmetode for å sjekke det.
 
 
 ```swift
- class func jsonDictionaryFromFile(filename: String) -> [String : AnyObject] {
-        let testBundle = NSBundle(forClass: AppDelegate.self)
-        let path = testBundle.pathForResource(filename, ofType: "json")
-        XCTAssertNotNil(path, "wrong filename")
-        let data = NSData(contentsOfFile: path!)
-        XCTAssertNotNil(data, "wrong filename")
-        do {
-            if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? [String : AnyObject] {
-                return jsonDictionary
-            }
-            
-        } catch let error {
-            print(error)
-        }
-        return [String :AnyObject]()
-        
-    }
+
+class func jsonDictionaryFromFile(filename: String) -> [String : Any] {
+       let testBundle = Bundle(for: AppDelegate.self)
+       let path = testBundle.path(forResource: filename, ofType: "json")
+       //        XCTAssertNotNil(path, "wrong filename")
+       let data = NSData(contentsOfFile: path!)!
+       //        XCTAssertNotNil(data, "wrong filename")
+       do {
+
+           let jsonDict = try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
+
+           return jsonDict
+
+       } catch let error {
+           print(error)
+       }
+       return [String : Any]()
+
+   }
 ```
 
 Fyll inn for at dette skal fungere
 
 let jsonAttributes = XCTestCase.jsonDictionaryFromFile("person") // leser person.json fra prosjektet ditt
 
-let person = Person(attributes:jsonAttributes) 
+let person = Person(attributes:jsonAttributes)
 person.name // Nikola Tesla
 
 
@@ -98,20 +100,8 @@ Bruk Alamofire til å gjøre en GET til den URLen for å hente JSON. Den vil ret
 
 Vis så resultatet i et UITableView
 
-Her anbefaler jeg å lage en klasse hvor du kan kalle følgende 
+Her anbefaler jeg å lage en klasse hvor du kan kalle følgende
 
-let post = Post(attributes: jsonAttributes) 
+let post = Post(attributes: jsonAttributes)
 
 Bonus-oppgave: Lag Unit-tester hvor du tester at du parser json fra den URLen riktig. Kopier json fra URLen inn i en fil og lag testene ved å parse den på samme måte som oppgave 3
-
-
-
-
-
-
-
-
-
-
-
-
