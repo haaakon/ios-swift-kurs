@@ -4,9 +4,9 @@
 
 ## Oppgave 1
 
-1. Lag et nytt prosjekt med Master/detail-application, pass på at Core data ikke er huket av. Du vil da få laget en basic app som kan vise en liste av objekter, med mulighet for add/delete. Finn metodene fra protocollen UITableViewDataSource, og forklar hva disse gjør. 
+1. Lag et nytt prosjekt med Master/detail-application, pass på at Core data ikke er huket av. Du vil da få laget en basic app som kan vise en liste av objekter, med mulighet for add/delete. Finn metodene fra protocollen UITableViewDataSource, og forklar hva disse gjør.
 2. Få teksten i cellene til å være "Antall celler: #", hvor # byttes ut med antall celler som var før den ble lagt til istedetfor datoen de ble laget på.
-3. Kjør appen på både iPhone og iPad - simulator, forklar hva som er forskjellen i UIet, og hvorfor det skjer. 
+3. Kjør appen på både iPhone og iPad - simulator, forklar hva som er forskjellen i UIet, og hvorfor det skjer.
 
 ## Oppgave 2
 
