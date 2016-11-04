@@ -324,12 +324,12 @@ workouts.append(workout)
 # Hent alle
 
 ```swift
-let query = NSFetchRequest(entityName: "Workout")
 
-if let results = try! moc.executeFetchRequest(query) as? [Workout] {
-    workouts = results
-    //tableView.reloadData()
-}
+let query = NSFetchRequest<Workout>(entityName: "Workout")
+
+let results = try! moc.fetch(query)
+workouts = results
+    //  tableView.reloadData()
 
 ```
 
@@ -338,15 +338,13 @@ if let results = try! moc.executeFetchRequest(query) as? [Workout] {
 # Fetch med predicate (spørring)
 
 ```swift
-var query = NSFetchRequest(entityName: "Workout")
+var query = NSFetchRequest<Workout>(entityName: "Workout")
 query.predicate = NSPredicate(format: "entries >= %d", 5)
 // workout sin attributt entries
 
-let results = try! moc.executeFetchRequest(query) as?
-	[Workout] {
+let results = try! moc.fetch(query)
     workouts = results
     //tableView.reloadData()
-}
 
 ```
 
@@ -357,7 +355,7 @@ let results = try! moc.executeFetchRequest(query) as?
 ```swift
 
 // Hent topp 3
-var fetchRequest = NSFetchRequest(entityName: "Workout")
+var fetchRequest = NSFetchRequest<Workout>(entityName: "Workout")
 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "entries", ascending: false)]
 fetchRequest.fetchLimit = 3
 
