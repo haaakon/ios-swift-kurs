@@ -6,7 +6,7 @@ Oppgave 1
 
 ![](img/workout.png)
 
-Workouts er en app som lar deg legge til øvelser og telle hvor mange ganger du har utført hver øvelse. Appen skal: 
+Workouts er en app som lar deg legge til øvelser og telle hvor mange ganger du har utført hver øvelse. Appen skal:
 
 * Liste ut øvelser med navn og forekomster (se bildet).
 * Kunne slette øvelser
@@ -28,11 +28,10 @@ Oppgave 2
 Opppgave 3
 ----------------
 
-Lag en app som viser antallet ganger den er åpnet. Tallet skal øke med 1 hver gang den åpnes. 
+Lag en app som viser antallet ganger den er åpnet. Tallet skal øke med 1 hver gang den åpnes.
 
 Implementer det på forskjellige måter:
-- Bruk NSUserDefaults
+- Bruk UserDefaults
 - Bruk NSKeyedArchiver
 - Bruk Keychain ( det er utrolig hemmelig hvor mange ganger appen er åpnet :-P )
 - Bruk Core Data
- 

@@ -21,7 +21,7 @@
 
 * Hvor filer lagres
 * Enkel lesing og skriving til disk
-* NSUserDefaults
+* UserDefaults
 * NSKeyedArchiver / NSKeyedUnarchiver
 * Core Data
 * Keychain
@@ -31,14 +31,14 @@
 # Hvor filer lagres
 
 ```swift
-let fm = NSFileManager.defaultManager()
-        
+let fm = FileManager.default()
+
 // <app home>/Documents, backes opp, kan bli vist til bruker
-// For brukerens datafiler 
+// For brukerens datafiler
 print(fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0])
 
 // <app home>/Library, backes opp, skjult
-// For det som ikke er brukerens datafiler 
+// For det som ikke er brukerens datafiler
 print(fm.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask)[0])
 
 // <app home>/Library/Caches, backes IKKE opp, skjult
@@ -47,7 +47,7 @@ print(fm.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)[0])
 
 // <app home>/tmp, backes IKKE opp
 // For midlertidige filer som ikke trenger å eksistere mellom launches
-print(NSTemporaryDirectory())
+print(TemporaryDirectory())
 ```
 
 ---
@@ -55,15 +55,15 @@ print(NSTemporaryDirectory())
 # Skriv og les string til disk
 
 ```swift
-   let dir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory,
-            inDomains: .UserDomainMask)[0] as! NSURL
+   let dir = FileManager.default().URLsForDirectory(.DocumentDirectory,
+            inDomains: .UserDomainMask)[0] as! URL
 
    let string: NSString = "Hello world"
 
    let path = dir.URLByAppendingPathComponent("file.txt").path!
-   
+
    try! string.writeToFile(path, atomically: true, encoding:NSUTF8StringEncoding)
-   
+
    let savedString = try! NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
 
 ```
@@ -73,7 +73,7 @@ print(NSTemporaryDirectory())
 # Skriv og les NSDictionary til plist
 
 ```swift
-let dir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, 
+let dir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory,
 				inDomains: .UserDomainMask)[0] as NSURL
 let dict = ["workouts": 23] as NSDictionary
 print(dir)
@@ -137,13 +137,13 @@ userDefaults.synchronize()
 class Workout : NSObject, NSCoding {
     var name: String!
     var entries: Int = 0
-    
+
     required convenience init(coder aDecoder: NSCoder) {
         self.init()
         name = aDecoder.decodeObjectForKey("name") as! String
         entries = aDecoder.decodeIntegerForKey("entries")
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.name, forKey: "name")
         aCoder.encodeInteger(self.entries, forKey: "entries")
@@ -157,7 +157,7 @@ class Workout : NSObject, NSCoding {
 
 ```swift
 let fm = NSFileManager.defaultManager()
-        
+
 let libDir = fm.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask)[0] as NSURL
 print(libDir)
 
@@ -199,7 +199,7 @@ For mer komplekse behov, når du trenger:
 
 # Terminologi
 
-* **Managed Object Context** - "hovedobjektet" mot Core Data. Håndterer et sett Managed Objects og deres lifssyklus 
+* **Managed Object Context** - "hovedobjektet" mot Core Data. Håndterer et sett Managed Objects og deres lifssyklus
 * **Persistent Store Coordinator** - abstraherer bort underliggende store. Implementerer henting/lagring/sletting/m.m. av MOM mot store
 * **Managed Object Model** - som et slags databaseskjema
 * **Persistent Object Store** - XML, SQLite, Binær, custom
@@ -221,7 +221,7 @@ lazy var managedObjectContext: NSManagedObjectContext? = {
     return managedObjectContext
 }()
 ```
-     
+
 ---
 
 
@@ -229,7 +229,7 @@ lazy var managedObjectContext: NSManagedObjectContext? = {
 
 ```swift
 lazy var managedObjectModel: NSManagedObjectModel = {
-    let modelURL = NSBundle.mainBundle().URLForResource("Workouts", 
+    let modelURL = NSBundle.mainBundle().URLForResource("Workouts",
     	withExtension: "momd")!
     return NSManagedObjectModel(contentsOfURL: modelURL)!
 }()
@@ -242,11 +242,11 @@ lazy var managedObjectModel: NSManagedObjectModel = {
 
 ```swift
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-   
+
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
-     
+
       	let coordinator = the try! coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
       	return coordinator
      }
@@ -255,7 +255,7 @@ lazy var managedObjectModel: NSManagedObjectModel = {
 
 ---
 
-# DEMO 
+# DEMO
 
 ### single view application - Check Core Data
 
@@ -278,10 +278,10 @@ I utgangspunktet NSManagedObject's med key/value. Disse **kan** og **bør** ofte
 # Opprett
 
 ```swift
-let entity = NSEntityDescription.entityForName("Workout", 
+let entity = NSEntityDescription.entityForName("Workout",
 				inManagedObjectContext: moc)
-				
-var workout = Workout(entity: entity!, 
+
+var workout = Workout(entity: entity!,
 				insertIntoManagedObjectContext: moc)
 workout.name = excersice
 workout.entries = 0
@@ -300,24 +300,24 @@ workouts.append(workout)
 
 // nilable initializer!
  convenience init?(attributes: [String : String], managedObjectContext: NSManagedObjectContext) {
- 
+
         self.init(entity: NSEntityDescription.entityForName("Workout", inManagedObjectContext: managedObjectContext)!, insertIntoManagedObjectContext: managedObjectContext)
-        
-        
+
+
      	if let actualName = attributes["name"] as? String {
         	self.name = actualName
         } else {
             return nil
         }
-        
+
         if let actualDifficulty = attributes["difficulty"] as? Int {
          	self.difficulty = actualDifficulty
         } else {
          	return nil
         }
-        
+
     }
-    
+
  ```
 ---
 
@@ -329,7 +329,7 @@ let query = NSFetchRequest(entityName: "Workout")
 if let results = try! moc.executeFetchRequest(query) as? [Workout] {
     workouts = results
     //tableView.reloadData()
-} 
+}
 
 ```
 
@@ -342,7 +342,7 @@ var query = NSFetchRequest(entityName: "Workout")
 query.predicate = NSPredicate(format: "entries >= %d", 5)
 // workout sin attributt entries
 
-let results = try! moc.executeFetchRequest(query) as? 
+let results = try! moc.executeFetchRequest(query) as?
 	[Workout] {
     workouts = results
     //tableView.reloadData()
@@ -426,7 +426,7 @@ print("\(count) øvelser registrert")
 ```swift
 
 // Instansier (eks. i viewDidLoad)
-NSFetchedResultsController(fetchRequest: query, 
+NSFetchedResultsController(fetchRequest: query,
         managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
 
 // Hent data
@@ -436,7 +436,7 @@ fetchedResultsController.performFetch(&error)
 fetchedResultsController.sections![section].numberOfObjects
 
 // Hent ut objekt med:
-fetchedResultsController.objectAtIndexPath(indexPath) 
+fetchedResultsController.objectAtIndexPath(indexPath)
 ```
 
 ---
@@ -445,7 +445,7 @@ fetchedResultsController.objectAtIndexPath(indexPath)
 
 ```swift
 
-class ViewController: UIViewController, UITableViewDataSource, 
+class ViewController: UIViewController, UITableViewDataSource,
     UITableViewDelegate,NSFetchedResultsControllerDelegate {
 
     // I ViewDidLoad, new opp NSFetchedResultsController og sett delegate:
@@ -464,15 +464,15 @@ class ViewController: UIViewController, UITableViewDataSource,
 ---
 
 ```swift
-func controller(controller: NSFetchedResultsController, 
-    didChangeObject anObject: AnyObject, 
-    atIndexPath indexPath: NSIndexPath, 
-    forChangeType type: NSFetchedResultsChangeType, 
+func controller(controller: NSFetchedResultsController,
+    didChangeObject anObject: AnyObject,
+    atIndexPath indexPath: NSIndexPath,
+    forChangeType type: NSFetchedResultsChangeType,
     newIndexPath: NSIndexPath) {
-        
+
     switch type {
         case .Insert:
-            self.tableView.insertRowsAtIndexPaths([newIndexPath], 
+            self.tableView.insertRowsAtIndexPaths([newIndexPath],
                 withRowAnimation: UITableViewRowAnimation.Automatic)
         case .Update:
             if let cell = self.tableView.cellForRowAtIndexPath(indexPath) {
@@ -486,7 +486,7 @@ func controller(controller: NSFetchedResultsController,
         default:
             break
     }
-        
+
 }
 ```
 
@@ -519,5 +519,3 @@ Apples intro til CoreData:
 
 #### Forelesningen er basert på fjorårets foiler, laget av
 #### Hans Magnus Inderberg og Mads Mobæk
-
-
